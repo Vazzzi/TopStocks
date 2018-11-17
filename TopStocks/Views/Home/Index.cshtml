@@ -1,0 +1,50 @@
+﻿@model TopStocks.Models.Stock
+
+@{
+    ViewBag.Title = "Home Page";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<header>
+    @Styles.Render("~/Content/site.css")
+    <div class="page-header">
+        <h1>Top Stocks<br /> <small>The Fastest stocks exchange which allow to trade within the top stocks at the market</small></h1>
+    </div>
+</header>
+
+<body>
+    <h1> Daily Market Overview</h1>
+    <!-- TradingView Widget BEGIN -->
+    <div class="tradingview-widget-container">
+        <div class="tradingview-widget-container__widget"></div>
+        <div class="tradingview-widget-copyright"><a href="https://www.tradingview.com" rel="noopener" target="_blank"><span class="blue-text">Quotes</span></a> by TradingView</div>
+        <script type="text/javascript" src="https://s3.tradingview.com/external-embedding/embed-widget-tickers.js" async>
+            {
+                "symbols": [
+                    {
+                        "title": "S&P 500",
+                        "proName": "INDEX:SPX"
+                    },
+                    {
+                        "title": "Nasdaq 100",
+                        "proName": "INDEX:IUXX"
+                    },
+                    {
+                        "title": "EUR/USD",
+                        "proName": "FX_IDC:EURUSD"
+                    },
+                    {
+                        "title": "BTC/USD",
+                        "proName": "BITFINEX:BTCUSD"
+                    },
+                    {
+                        "title": "ETH/USD",
+                        "proName": "BITFINEX:ETHUSD"
+                    }
+                ],
+                    "locale": "en"
+            }
+        </script>
+    </div>
+    <!-- TradingView Widget END -->
+</body>
