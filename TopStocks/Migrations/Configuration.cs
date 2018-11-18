@@ -4,6 +4,9 @@ namespace TopStocks.Migrations
     using System.Data.Entity;
     using System.Data.Entity.Migrations;
     using System.Linq;
+    using Microsoft.AspNet.Identity;
+    using Microsoft.AspNet.Identity.EntityFramework;
+    using TopStocks.Models;
 
     internal sealed class Configuration : DbMigrationsConfiguration<TopStocks.Models.ApplicationDbContext>
     {
@@ -14,10 +17,16 @@ namespace TopStocks.Migrations
 
         protected override void Seed(TopStocks.Models.ApplicationDbContext context)
         {
-            //  This method will be called after migrating to the latest version.
-
-            //  You can use the DbSet<T>.AddOrUpdate() helper extension method 
-            //  to avoid creating duplicate seed data.
+            // add application roles
+            var RoleManager = new RoleManager<IdentityRole>(new RoleStore<IdentityRole>(context));
+            if (!RoleManager.RoleExists("Admin"))
+            {
+                var roleResult = RoleManager.Create(new IdentityRole("Admin"));
+            }
+            if (!RoleManager.RoleExists("User"))
+            {
+                var roleResult = RoleManager.Create(new IdentityRole("User"));
+            }
         }
     }
 }

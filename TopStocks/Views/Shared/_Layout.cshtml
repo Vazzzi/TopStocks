@@ -29,7 +29,7 @@
                     <li>@Html.ActionLink("Stocks", "Index", "Stocks")</li>
                     @if (User.IsInRole("Admin"))
                     {
-                        <li>@Html.ActionLink("Manager Statistics", "TopSalingTable", "Transactions")</li>
+                        <li>@Html.ActionLink("Manage", "Manage", "Stocks")</li>
                     }
                 </ul>
                 @Html.Partial("_LoginPartial")

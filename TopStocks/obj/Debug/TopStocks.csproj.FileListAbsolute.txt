@@ -116,3 +116,4 @@ C:\Users\Roi\source\repos\TopStocks\TopStocks\bin\Microsoft.Owin.Security.Google
 C:\Users\Roi\source\repos\TopStocks\TopStocks\bin\Microsoft.Owin.Security.OAuth.xml
 C:\Users\Roi\source\repos\TopStocks\TopStocks\obj\Debug\TopStocks.Migrations.initial.resources
 C:\Users\Roi\source\repos\TopStocks\TopStocks\obj\Debug\TopStocks.csproj.GenerateResource.cache
+C:\Users\Roi\source\repos\TopStocks\TopStocks\obj\Debug\TopStocks.Migrations.initial1.resources
