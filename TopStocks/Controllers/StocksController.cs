@@ -16,90 +16,71 @@ namespace TopStocks.Controllers
     {
         private ApplicationDbContext db = new ApplicationDbContext();
 
-        // GET: Apartments
-        [Authorize]
+
+        // GET: Stocks/Index
         public ActionResult Index()
         {
-            return View(db.Apartments.Where(ap =>
-                ap.Owner == db.Users.FirstOrDefault<ApplicationUser>(user =>
-                    user.UserName == this.User.Identity.Name)));
+            return View();
         }
 
-        // Get: Stocks/Manage
+        // GET: Stocks/Manage
         [Authorize(Roles = "Admin")]
         public ActionResult Manage()
         {
-            Dictionary<ApplicationUser, int> transactions = db.Transactions.GroupBy(t => t.Saler)
-                                                            .Select(g => new { g.Key, Count = g.Count() })
-                                                            .OrderByDescending(s => s.Count)
-                                                            .ToDictionary(s => s.Key, s => s.Count);
-            return View("Statistics", transactions);
+            return View(db.Stocks.ToList());
         }
 
-        // GET: Apartments/Details/5
-        [Authorize]
+        // GET: Stocks/Details/5
         public ActionResult Details(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-
-            Apartment apartment = db.Apartments.FirstOrDefault(ap => (ap.ID == id) &&
-                                                                      (ap.Owner.UserName == this.User.Identity.Name));
-
-            if (apartment == null)
+            Stock stock = db.Stocks.Find(id);
+            if (stock == null)
             {
                 return HttpNotFound();
             }
-
-            return View(apartment);
+            return View(stock);
         }
 
-        // GET: Apartments/Create
-        [Authorize]
+        // GET: Stocks/Create
+        [Authorize(Roles = "Admin")]
         public ActionResult Create()
         {
             return View();
         }
 
-        // POST: Apartments/Create
+        // POST: Stocks/Create
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
+        [Authorize(Roles = "Admin")]
         [ValidateAntiForgeryToken]
-        [Authorize]
-        public ActionResult Create([Bind(Include =
-                "ID,Owner,Location,Description,PropertyValue,PhotoList,Photos,Balcony,Size,FloorNumber,NumberOfRooms")]
-            Apartment apartment)
+        public ActionResult Create([Bind(Include = "ID,Description,Price,NextReportDate,Photo")] Stock stock)
         {
             db.Configuration.LazyLoadingEnabled = false;
-
-
             List<string> PhotoList = new List<string>();
 
             if (ModelState.IsValid && Request.Files.Count > 0)
             {
-                for (int uploadID = 0; uploadID < Request.Files.Count; uploadID++)
+
+                var uploadedFile = Request.Files[0];
+
+                if (uploadedFile.HasFile())
                 {
-                    var uploadedFile = Request.Files[uploadID];
-
-                    if (uploadedFile.HasFile())
-                    {
-                        PhotoList.Add(UploadApartmentPhoto(uploadedFile));
-                    }
+                    stock.Photo = UploadApartmentPhoto(uploadedFile);
                 }
-
-                apartment.PhotoList = PhotoList;
-                apartment.Owner = db.Users.FirstOrDefault(s => s.UserName == this.User.Identity.Name);
-
-                db.Apartments.Add(apartment);
+     
+                db.Stocks.Add(stock);
                 db.SaveChanges();
-                return RedirectToAction("Index");
+                return RedirectToAction("Manage");
             }
 
-            return View(apartment);
+            return View(stock);
         }
+
 
         private string UploadApartmentPhoto(HttpPostedFileBase uploadedFile)
         {
@@ -115,117 +96,66 @@ namespace TopStocks.Controllers
             return relativePath + '/' + filename;
         }
 
-        // GET: Apartments/Edit/5
-        [Authorize]
+
+        // GET: Stocks/Edit/5
+        [Authorize(Roles = "Admin")]
         public ActionResult Edit(int? id)
         {
-            db.Configuration.LazyLoadingEnabled = false;
-
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-
-            Apartment apartment = db.Apartments.FirstOrDefault(ap => (ap.ID == id) &&
-                                                                      (ap.Owner.UserName == this.User.Identity.Name));
-
-            if (apartment == null)
+            Stock stock = db.Stocks.Find(id);
+            if (stock == null)
             {
                 return HttpNotFound();
             }
-
-            return View(apartment);
+            return View(stock);
         }
 
-        // POST: Apartments/Edit/5
+        // POST: Stocks/Edit/5
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
+        [Authorize(Roles = "Admin")]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include =
-                "ID,Owner,Location,Description,PropertyValue,PhotoList,Photos,Balcony,Size,FloorNumber,NumberOfRooms")]
-            Apartment apartment)
+        public ActionResult Edit([Bind(Include = "ID,Description,Price,NextReportDate,Photo")] Stock stock)
         {
             if (ModelState.IsValid)
             {
-                for (int uploadID = 0; uploadID < Request.Files.Count; uploadID++)
-                {
-                    var uploadedFile = Request.Files[uploadID];
-
-                    if (uploadedFile.HasFile())
-                    {
-                        apartment.PhotoList.Add(UploadApartmentPhoto(uploadedFile));
-                    }
-                }
-
-                // Compare and delete all the photos from the folder
-                CompareAndDeletePhotos(apartment);
-
-                db.Entry(apartment).State = EntityState.Modified;
+                db.Entry(stock).State = EntityState.Modified;
                 db.SaveChanges();
-                return RedirectToAction("Index");
+                return RedirectToAction("Manage");
             }
-
-            return View(apartment);
+            return View(stock);
         }
 
-        private void CompareAndDeletePhotos(Apartment apartment)
-        {
-            // Get the current db value
-            string dbApartmentPhotoList =
-                db.Apartments.Where(ap => ap.ID == apartment.ID).Select(ap => ap.Photos).ToList()[0];
-
-            if (!String.IsNullOrEmpty(dbApartmentPhotoList))
-            {
-                foreach (string photo in dbApartmentPhotoList.Split(','))
-                {
-                    string filePath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, photo);
-
-                    if (!apartment.PhotoList.Contains(photo) && System.IO.File.Exists(filePath))
-                    {
-                        System.IO.File.Delete(filePath);
-                    }
-                }
-            }
-        }
-
-        // GET: Apartments/Delete/5
-        [Authorize]
+        // GET: Stocks/Delete/5
+        [Authorize(Roles = "Admin")]
         public ActionResult Delete(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-
-            Apartment apartment = db.Apartments.FirstOrDefault(ap => (ap.ID == id) &&
-                                                                      (ap.Owner.UserName == this.User.Identity.Name));
-
-            if (apartment == null)
+            Stock stock = db.Stocks.Find(id);
+            if (stock == null)
             {
                 return HttpNotFound();
             }
-
-            return View(apartment);
+            return View(stock);
         }
 
-        // POST: Apartments/Delete/5
+        // POST: Stocks/Delete/5
+        [Authorize(Roles = "Admin")]
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
-            Apartment apartment = db.Apartments.FirstOrDefault(ap => (ap.ID == id) &&
-                                                                      (ap.Owner.UserName == this.User.Identity.Name));
-
-            if (apartment != null)
-            {
-                apartment.PhotoList.ForEach(photo => System.IO.File.Delete(Path.Combine(AppDomain.CurrentDomain.BaseDirectory, photo)));
-
-                db.Apartments.Remove(apartment);
-                db.SaveChanges();
-            }
-
-            return RedirectToAction("Index");
+            Stock stock = db.Stocks.Find(id);
+            db.Stocks.Remove(stock);
+            db.SaveChanges();
+            return RedirectToAction("Manage");
         }
 
         protected override void Dispose(bool disposing)
@@ -234,68 +164,7 @@ namespace TopStocks.Controllers
             {
                 db.Dispose();
             }
-
             base.Dispose(disposing);
-        }
-
-        public JsonResult AllApartmentsJSON()
-        {
-            var apartments = db.Apartments.ToList();
-            return Json(apartments, JsonRequestBehavior.AllowGet);
-        }
-
-        public JsonResult ApartmentCountGroupJSON()
-        {
-            var apartments = db.Apartments.GroupBy(ap => ap.Location.City)
-                                          .Select(ap => new { City = ap.Key, Count = ap.Count() });
-
-            return Json(apartments, JsonRequestBehavior.AllowGet);
-        }
-
-        public JsonResult SizeBalconyMinOrMaxPriceJSON(int Size, bool Balcony, int MinimumPrice)
-        {
-            return Json(db.Apartments.Include(t => t.Owner).Where(p => p.Balcony == Balcony && p.Size == Size &&
-                                                                       p.PropertyValue >= MinimumPrice).ToList(),
-                JsonRequestBehavior.AllowGet);
-        }
-
-        public JsonResult SizeBalconyPriceRangeJSON(int Size, bool Balcony, int MinimumPrice, int MaximumPrice)
-        {
-            var QuerySet = db.Apartments.Include(t => t.Owner).Where(p => p.Balcony == Balcony && p.Size == Size &&
-                                                                          p.PropertyValue >= MinimumPrice &&
-                                                                          p.PropertyValue <= MaximumPrice).ToList();
-            return Json(QuerySet, JsonRequestBehavior.AllowGet);
-        }
-
-        public JsonResult AmountPerCity(string CityName)
-        {
-            var QuerySet = db.Apartments.Where(t => t.Location.City == CityName).GroupBy(p => p.Location.City)
-                .Select(g => new { count = g.Count() }).ToList();
-
-            return Json(QuerySet, JsonRequestBehavior.AllowGet);
-        }
-
-        public bool PredictApartmentSale(int size, int value, int floor)
-        {
-
-            var proc = new Process
-            {
-                StartInfo = new ProcessStartInfo
-                {
-                    FileName = System.AppDomain.CurrentDomain.BaseDirectory + @"..\debug\ML.exe",
-                    Arguments = size.ToString() + " " + value.ToString() + " " + floor.ToString(),
-                    UseShellExecute = false,
-                    RedirectStandardOutput = true,
-                    CreateNoWindow = false
-                }
-            };
-
-            proc.Start();
-            proc.WaitForExit();
-            string output = proc.StandardOutput.ReadToEnd();
-            bool returnBool = output.TrimEnd() == "True";
-
-            return returnBool;
         }
     }
 }

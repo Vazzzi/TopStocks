@@ -1,18 +1,14 @@
-﻿
+﻿@model  TopStocks.Models.IndexViewModel
 @{
-    Layout = "~/Views/Shared/_Layout.cshtml";
+    ViewBag.Title = "Get Your Stocks Here";
 }
 
-<!DOCTYPE html>
-
-<html>
-<head>
-    <meta name="viewport" content="width=device-width" />
-    <title>Index</title>
-</head>
-<body>
-    <div> 
-    </div>
-</body>
-</html>
-@ViewBag.name
+<h2>@ViewBag.Title</h2>
+<div align="right">
+    <h3>
+        @if (User.IsInRole("Admin"))
+        {
+        <a href='/Stocks/Manage' class='button'>Manage</a>
+        }
+    </h3>
+</div>
