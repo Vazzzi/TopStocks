@@ -7,8 +7,9 @@
 <h2>Create</h2>
 
 
-@using (Html.BeginForm()) 
+@using (Html.BeginForm("Create", "Stocks", FormMethod.Post, new { enctype = "multipart/form-data" }))
 {
+    
     @Html.AntiForgeryToken()
     
 <div class="form-horizontal">

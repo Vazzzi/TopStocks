@@ -208,8 +208,13 @@
     <Compile Include="Migrations\201811222250097_initial2.Designer.cs">
       <DependentUpon>201811222250097_initial2.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201811231715431_inital.cs" />
+    <Compile Include="Migrations\201811231715431_inital.Designer.cs">
+      <DependentUpon>201811231715431_inital.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
+    <Compile Include="Models\Holding.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
     <Compile Include="Models\Price.cs" />
@@ -242,6 +247,7 @@
     <Content Include="Scripts\jquery.validate.unobtrusive.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.min.js" />
     <Content Include="Scripts\modernizr-2.8.3.js" />
+    <Content Include="Scripts\site.js" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
@@ -305,6 +311,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201811222250097_initial2.resx">
       <DependentUpon>201811222250097_initial2.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201811231715431_inital.resx">
+      <DependentUpon>201811231715431_inital.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

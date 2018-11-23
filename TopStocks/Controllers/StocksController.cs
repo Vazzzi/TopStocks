@@ -57,7 +57,7 @@ namespace TopStocks.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "ID,Name,Description,Price,NextReportDate")] Stock stock)
+        public ActionResult Create([Bind(Include = "ID,Name,Description,Price,NextReportDate,Photo")] Stock stock)
         {
             db.Configuration.LazyLoadingEnabled = false;
 
@@ -67,9 +67,10 @@ namespace TopStocks.Controllers
             if (ModelState.IsValid && Request.Files.Count > 0)
             {
                 Photo = UploadStockPhoto(Request.Files[0]);
+                stock.Photo = Photo;
                 db.Stocks.Add(stock);
                 db.SaveChanges();
-                return RedirectToAction("Index");
+                return RedirectToAction("Manage");
             }
 
             return View(stock);
@@ -77,16 +78,16 @@ namespace TopStocks.Controllers
 
         private string UploadStockPhoto(HttpPostedFileBase uploadedFile)
         {
-            string relativePath = "UserPhotos/" + this.User.Identity.Name.Replace("@", "------");
+            string relativePath = "UserPhotos/" + this.User.Identity.Name.Replace("@", "--");
             string absolutePath = AppDomain.CurrentDomain.BaseDirectory + relativePath;
 
             Directory.CreateDirectory(absolutePath);
 
-            string filename = DateTime.Now.ToFileTime() + (new Random().Next()).ToString() +
+            string filename =(new Random().Next()).ToString() +
                               Path.GetExtension(uploadedFile.FileName);
             uploadedFile.SaveAs(Path.Combine(absolutePath, filename));
 
-            return relativePath + '/' + filename;
+            return "../" + relativePath + '/' + filename;
         }
 
 
@@ -113,7 +114,7 @@ namespace TopStocks.Controllers
         [HttpPost]
         [Authorize(Roles = "Admin")]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "ID,Name,Description,Price,NextReportDate")] Stock stock)
+        public ActionResult Edit([Bind(Include = "ID,Name,Description,Price,NextReportDate,Photo")] Stock stock)
         {
             if (ModelState.IsValid)
             {

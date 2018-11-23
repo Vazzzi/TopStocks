@@ -13,8 +13,7 @@ namespace TopStocks.Models
         public string Description { get; set; }
         public Price Price { get; set; }
         public DateTime NextReportDate { get; set; }
-        //[NotMapped]
-        //public HttpPostedFileBase UploadedFile { get; set; }
+        public string Photo { get; set; }
 
     }
 }

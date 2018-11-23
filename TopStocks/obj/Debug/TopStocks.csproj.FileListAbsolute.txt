@@ -118,3 +118,4 @@ C:\Users\Roi\source\repos\TopStocks\TopStocks\obj\Debug\TopStocks.Migrations.ini
 C:\Users\Roi\source\repos\TopStocks\TopStocks\obj\Debug\TopStocks.csproj.GenerateResource.cache
 C:\Users\Roi\source\repos\TopStocks\TopStocks\obj\Debug\TopStocks.Migrations.initial1.resources
 C:\Users\Roi\source\repos\TopStocks\TopStocks\obj\Debug\TopStocks.Migrations.initial2.resources
+C:\Users\Roi\source\repos\TopStocks\TopStocks\obj\Debug\TopStocks.Migrations.inital.resources

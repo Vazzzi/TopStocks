@@ -129,20 +129,20 @@ textarea {
     background-position: center;
 }
 
-.apartment-view-image {
+.stock-view-image {
     height: 100px;
     width: 150px;
     display: inline;
 }
 
-.apartment-view-image-container {
+.stock-view-image-container {
     height: 100%;
     max-width: 200px;
     display: inline-grid;
     position: relative;
 }
 
-.apartment-view-image-container-delete {
+.stock-view-image-container-delete {
     position: absolute;
     top: 0;
     left: 0;
@@ -192,12 +192,12 @@ aside {
     text-align: center;
 }
 
-.apartment-main-view {
+.stock-main-view {
     width: 120%;
     margin-left: -10%;
 }
 
-#show-apartments {
+#show-stocks {
     margin-left: 8%;
 }
 
@@ -225,6 +225,28 @@ aside {
     padding-top: 8px;
 }
 
-.apartment-row-margin {
+.stock-row-margin {
     max-width: 100%;
 }
+
+.stock-view-image {
+    height: 100px;
+    width: 150px;
+    display: inline;
+}
+
+.stock-view-image-container {
+    height: 100%;
+    max-width: 200px;
+    display: inline-grid;
+    position: relative;
+}
+
+.stock-view-image-container-delete {
+    position: absolute;
+    top: 0;
+    left: 0;
+    color: white;
+    text-shadow: -0.5px 0 red, 0 0.5px red, 0.5px 0 red, 0 -0.5px red;
+}
+
