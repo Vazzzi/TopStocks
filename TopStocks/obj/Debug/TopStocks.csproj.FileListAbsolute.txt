@@ -119,3 +119,6 @@ C:\Users\Roi\source\repos\TopStocks\TopStocks\obj\Debug\TopStocks.csproj.Generat
 C:\Users\Roi\source\repos\TopStocks\TopStocks\obj\Debug\TopStocks.Migrations.initial1.resources
 C:\Users\Roi\source\repos\TopStocks\TopStocks\obj\Debug\TopStocks.Migrations.initial2.resources
 C:\Users\Roi\source\repos\TopStocks\TopStocks\obj\Debug\TopStocks.Migrations.inital.resources
+C:\Users\Roi\source\repos\TopStocks\TopStocks\obj\Debug\TopStocks.Migrations.initial3.resources
+C:\Users\Roi\source\repos\TopStocks\TopStocks\obj\Debug\TopStocks.Migrations.initial4.resources
+C:\Users\Roi\source\repos\TopStocks\TopStocks\obj\Debug\TopStocks.Migrations.initial5.resources

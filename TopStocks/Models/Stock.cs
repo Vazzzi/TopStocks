@@ -10,6 +10,7 @@ namespace TopStocks.Models
     {
         public int ID { get; set; }
         public string Name { get; set; }
+        public string Symbol { get;set; }
         public string Description { get; set; }
         public Price Price { get; set; }
         public DateTime NextReportDate { get; set; }

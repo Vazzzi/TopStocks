@@ -33,6 +33,7 @@ namespace TopStocks.Models
         public System.Data.Entity.DbSet<TopStocks.Models.Stock> Stocks { get; set; }
 
         object placeHolderVariable;
+        public System.Data.Entity.DbSet<TopStocks.Models.Holding> Holdings { get; set; }
         //public System.Data.Entity.DbSet<TopStocks.Models.Transaction> Transactions { get; set; }
     }
 }

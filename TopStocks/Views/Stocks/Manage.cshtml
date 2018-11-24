@@ -12,6 +12,12 @@
 <table class="table">
     <tr>
         <th>
+            @Html.DisplayNameFor(model => model.Name)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Symbol)
+        </th>
+        <th>
             @Html.DisplayNameFor(model => model.Description)
         </th>
         <th>
@@ -28,6 +34,12 @@
 
 @foreach (var item in Model) {
     <tr>
+        <th>
+            @Html.DisplayFor(modelItem => item.Name)
+        </th>
+        <th>
+            @Html.DisplayFor(modelItem => item.Symbol)
+        </th>
         <td>
             @Html.DisplayFor(modelItem => item.Description)
         </td>
@@ -38,7 +50,7 @@
             @Html.DisplayFor(modelItem => item.NextReportDate)
         </td>
         <td>
-        <img class="stock-view-image" src="@item.Photo" />  
+            <img class="stock-view-image" src="@item.Photo" />
         </td>
         <td>
             @Html.ActionLink("Edit", "Edit", new { id = item.ID }) |

@@ -57,7 +57,7 @@ namespace TopStocks.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "ID,Name,Description,Price,NextReportDate,Photo")] Stock stock)
+        public ActionResult Create([Bind(Include = "ID,Name,Symbol,Description,Price,NextReportDate,Photo")] Stock stock)
         {
             db.Configuration.LazyLoadingEnabled = false;
 
@@ -78,7 +78,7 @@ namespace TopStocks.Controllers
 
         private string UploadStockPhoto(HttpPostedFileBase uploadedFile)
         {
-            string relativePath = "UserPhotos/" + this.User.Identity.Name.Replace("@", "--");
+            string relativePath = "Photos/" + this.User.Identity.Name.Replace("@", "--");
             string absolutePath = AppDomain.CurrentDomain.BaseDirectory + relativePath;
 
             Directory.CreateDirectory(absolutePath);
@@ -114,7 +114,7 @@ namespace TopStocks.Controllers
         [HttpPost]
         [Authorize(Roles = "Admin")]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "ID,Name,Description,Price,NextReportDate,Photo")] Stock stock)
+        public ActionResult Edit([Bind(Include = "ID,Name,Symbol,Description,Price,NextReportDate,Photo")] Stock stock)
         {
             if (ModelState.IsValid)
             {
@@ -161,5 +161,12 @@ namespace TopStocks.Controllers
             }
             base.Dispose(disposing);
         }
+
+        public JsonResult AllApartmentsJSON()
+        {
+            var apartments = db.Stocks.ToList();
+            return Json(apartments, JsonRequestBehavior.AllowGet);
+        }
+
     }
 }
