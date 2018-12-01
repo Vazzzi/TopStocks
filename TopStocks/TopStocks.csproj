@@ -224,6 +224,22 @@
     <Compile Include="Migrations\201811241847059_initial5.Designer.cs">
       <DependentUpon>201811241847059_initial5.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201811291516276_inintal.cs" />
+    <Compile Include="Migrations\201811291516276_inintal.Designer.cs">
+      <DependentUpon>201811291516276_inintal.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201811301319275_initial6.cs" />
+    <Compile Include="Migrations\201811301319275_initial6.Designer.cs">
+      <DependentUpon>201811301319275_initial6.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201811301409015_inintal1.cs" />
+    <Compile Include="Migrations\201811301409015_inintal1.Designer.cs">
+      <DependentUpon>201811301409015_inintal1.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201812010936209_initial7.cs" />
+    <Compile Include="Migrations\201812010936209_initial7.Designer.cs">
+      <DependentUpon>201812010936209_initial7.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\Holding.cs" />
@@ -250,6 +266,7 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <None Include="Scripts\jquery-3.3.1.intellisense.js" />
+    <Content Include="Scripts\canvas.js" />
     <Content Include="Scripts\jquery-3.3.1.js" />
     <Content Include="Scripts\jquery-3.3.1.min.js" />
     <Content Include="Scripts\jquery-3.3.1.slim.js" />
@@ -261,6 +278,7 @@
     <Content Include="Scripts\jquery.validate.unobtrusive.min.js" />
     <Content Include="Scripts\modernizr-2.8.3.js" />
     <Content Include="Scripts\site.js" />
+    <Content Include="Scripts\widgets.js" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
@@ -297,16 +315,15 @@
     <Content Include="Views\Stocks\Edit.cshtml" />
     <Content Include="Views\Stocks\Manage.cshtml" />
     <Content Include="Views\Stocks\Index.cshtml" />
+    <Content Include="Views\Stocks\_HoldingModal.cshtml" />
     <Content Include="Views\Holdings\Create.cshtml" />
     <Content Include="Views\Holdings\Delete.cshtml" />
     <Content Include="Views\Holdings\Details.cshtml" />
     <Content Include="Views\Holdings\Edit.cshtml" />
     <Content Include="Views\Holdings\Index.cshtml" />
-    <Content Include="Views\Stocks\_BuyingModel.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Views\FileUtil\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff2" />
@@ -342,6 +359,18 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201811241847059_initial5.resx">
       <DependentUpon>201811241847059_initial5.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201811291516276_inintal.resx">
+      <DependentUpon>201811291516276_inintal.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201811301319275_initial6.resx">
+      <DependentUpon>201811301319275_initial6.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201811301409015_inintal1.resx">
+      <DependentUpon>201811301409015_inintal1.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201812010936209_initial7.resx">
+      <DependentUpon>201812010936209_initial7.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

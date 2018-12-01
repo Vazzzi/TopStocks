@@ -12,7 +12,7 @@ namespace TopStocks
             bundles.Add(new ScriptBundle("~/bundles/jquery").Include(
             "~/Scripts/jquery-{version}.js", "~/Scripts/site.js"));
 
-            bundles.Add(new ScriptBundle("~/bundles/sitewide").Include("~/Scripts/site.js"));
+            bundles.Add(new ScriptBundle("~/bundles/sitescript").Include("~/Scripts/site.js"));
 
             bundles.Add(new ScriptBundle("~/bundles/jquery").Include(
                         "~/Scripts/jquery-{version}.js"));

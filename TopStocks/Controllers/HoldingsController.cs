@@ -4,8 +4,9 @@ using System.Data;
 using System.Data.Entity;
 using System.Linq;
 using System.Net;
-using System.Web;
 using System.Web.Mvc;
+using TopStocks.Models;
+
 
 namespace TopStocks.Models
 {
@@ -36,30 +37,28 @@ namespace TopStocks.Models
         }
 
         // GET: Holdings/Create
+        /*
         public ActionResult Create()
         {
             ViewBag.StockID = new SelectList(db.Stocks, "ID", "Name");
             return View();
         }
-
+        */
         // POST: Holdings/Create
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "ID,BuyerID,BuyingDate,BuyingPrice,CurrentPrice,StockID")] Holding holding)
+        public ActionResult Create(Stock stock, int quantity, int buyingPrice, int holdingValue)
         {
-            if (ModelState.IsValid)
-            {
-                db.Holdings.Add(holding);
-                db.SaveChanges();
-                return RedirectToAction("Index");
-            }
-
-            ViewBag.StockID = new SelectList(db.Stocks, "ID", "Name", holding.StockID);
-            return View(holding);
+            Holding holding = new Holding();
+            return new HttpStatusCodeResult(HttpStatusCode.Created);
         }
+        /*
+        public ActionResult CreateHolding(Stock stock, int quantity  , int buyingPrice)
+        {
 
+        }
+        
         // GET: Holdings/Edit/5
         public ActionResult Edit(int? id)
         {
@@ -81,7 +80,7 @@ namespace TopStocks.Models
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "ID,BuyerID,BuyingDate,BuyingPrice,CurrentPrice,StockID")] Holding holding)
+        public ActionResult Edit([Bind(Include = "ID,UserID,CurrentPrice,Quantity,BuyingPrice,BuyingTotalSum,BuyingDate,StockID")] Holding holding)
         {
             if (ModelState.IsValid)
             {
@@ -118,7 +117,7 @@ namespace TopStocks.Models
             db.SaveChanges();
             return RedirectToAction("Index");
         }
-
+        */
         protected override void Dispose(bool disposing)
         {
             if (disposing)

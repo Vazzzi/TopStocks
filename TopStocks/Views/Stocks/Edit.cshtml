@@ -58,8 +58,9 @@
 
     <div class="form-group">
         @Html.LabelFor(model => model.Photo, htmlAttributes: new { @class = "control-label col-md-2" })
+        <small>Total size limit: 10MB</small>
         <div class="col-md-10">
-            @Html.EditorFor(model => model.Photo, new { htmlAttributes = new { @class = "form-control" } })
+            <input class="input-validation-error form-control" data-val-required="You need to upload photo" data-val="true" type="file" name="Photo" id="Photo" accept="image/*" multiple Required />
             @Html.ValidationMessageFor(model => model.Photo, "", new { @class = "text-danger" })
         </div>
     </div>

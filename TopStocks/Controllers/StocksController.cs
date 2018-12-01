@@ -118,6 +118,13 @@ namespace TopStocks.Controllers
         {
             if (ModelState.IsValid)
             {
+                string Photo;
+
+                if (ModelState.IsValid && Request.Files.Count > 0)
+                {
+                    Photo = UploadStockPhoto(Request.Files[0]);
+                    stock.Photo = Photo;
+                }
                 db.Entry(stock).State = EntityState.Modified;
                 db.SaveChanges();
                 return RedirectToAction("Manage");
@@ -162,10 +169,10 @@ namespace TopStocks.Controllers
             base.Dispose(disposing);
         }
 
-        public JsonResult AllApartmentsJSON()
+        public JsonResult AllStocksJSON()
         {
-            var apartments = db.Stocks.ToList();
-            return Json(apartments, JsonRequestBehavior.AllowGet);
+            var stocks = db.Stocks.ToList();
+            return Json(stocks, JsonRequestBehavior.AllowGet);
         }
 
     }
