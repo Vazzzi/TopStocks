@@ -48,9 +48,24 @@ namespace TopStocks.Models
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
-        public ActionResult Create(Stock stock, int quantity, int buyingPrice, int holdingValue)
+        public ActionResult Create(Stock stock, int quantity, int buyingPrice, int totalSum)
         {
             Holding holding = new Holding();
+
+            ApplicationUser currentUser = db.Users.Where(user => user.UserName == User.Identity.Name).FirstOrDefault();
+            
+            if (currentUser == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.Forbidden);
+            }
+            var a = stock;
+            holding.Buyer = currentUser;
+            holding.BuyingDate = DateTime.Now;
+            holding.BuyingPrice = buyingPrice;
+            holding.Quantity = quantity;
+            holding.BuyingTotalSum = totalSum;
+            //holding.StockName = apartmentForSale;
+
             return new HttpStatusCodeResult(HttpStatusCode.Created);
         }
         /*

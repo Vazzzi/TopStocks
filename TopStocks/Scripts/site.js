@@ -118,7 +118,7 @@ function updateHoldingModalData(stockData) {
                 stock: stockData,
                 quantity: parseInt(document.getElementById("quantity").value),
                 buyingPrice: parseInt(document.getElementById("holdingBuy").placeholder),
-                holdingValue: parseInt(document.getElementById("charge").placeholder)
+                totalSum: parseInt(document.getElementById("charge").placeholder)
             }
         })
             .done(function () {

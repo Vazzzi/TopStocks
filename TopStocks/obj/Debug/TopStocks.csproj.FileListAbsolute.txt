@@ -126,3 +126,4 @@ C:\Users\Roi\source\repos\TopStocks\TopStocks\obj\Debug\TopStocks.Migrations.ini
 C:\Users\Roi\source\repos\TopStocks\TopStocks\obj\Debug\TopStocks.Migrations.initial6.resources
 C:\Users\Roi\source\repos\TopStocks\TopStocks\obj\Debug\TopStocks.Migrations.inintal1.resources
 C:\Users\Roi\source\repos\TopStocks\TopStocks\obj\Debug\TopStocks.Migrations.initial7.resources
+C:\Users\Roi\source\repos\TopStocks\TopStocks\obj\Debug\TopStocks.Migrations.initial8.resources
