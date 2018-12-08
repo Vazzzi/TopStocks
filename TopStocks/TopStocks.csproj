@@ -88,6 +88,9 @@
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.Drawing" />
+    <Reference Include="System.Net.Http.Formatting, Version=5.2.7.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.WebApi.Client.5.2.7\lib\net45\System.Net.Http.Formatting.dll</HintPath>
+    </Reference>
     <Reference Include="System.Web.DynamicData" />
     <Reference Include="System.Web.Entity" />
     <Reference Include="System.Web.ApplicationServices" />
@@ -244,10 +247,31 @@
     <Compile Include="Migrations\201812012216091_initial8.Designer.cs">
       <DependentUpon>201812012216091_initial8.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201812042237168_initial9.cs" />
+    <Compile Include="Migrations\201812042237168_initial9.Designer.cs">
+      <DependentUpon>201812042237168_initial9.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201812062222443_price-update.cs" />
+    <Compile Include="Migrations\201812062222443_price-update.Designer.cs">
+      <DependentUpon>201812062222443_price-update.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201812081619374_updated-holding.cs" />
+    <Compile Include="Migrations\201812081619374_updated-holding.Designer.cs">
+      <DependentUpon>201812081619374_updated-holding.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201812081632107_viewmdoel.cs" />
+    <Compile Include="Migrations\201812081632107_viewmdoel.Designer.cs">
+      <DependentUpon>201812081632107_viewmdoel.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201812081817004_added-virt-int.cs" />
+    <Compile Include="Migrations\201812081817004_added-virt-int.Designer.cs">
+      <DependentUpon>201812081817004_added-virt-int.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\Holding.cs" />
     <Compile Include="Controllers\HoldingsController.cs" />
+    <Compile Include="Models\HoldingViewModel.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
     <Compile Include="Models\Price.cs" />
@@ -378,6 +402,21 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201812012216091_initial8.resx">
       <DependentUpon>201812012216091_initial8.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201812042237168_initial9.resx">
+      <DependentUpon>201812042237168_initial9.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201812062222443_price-update.resx">
+      <DependentUpon>201812062222443_price-update.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201812081619374_updated-holding.resx">
+      <DependentUpon>201812081619374_updated-holding.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201812081632107_viewmdoel.resx">
+      <DependentUpon>201812081632107_viewmdoel.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201812081817004_added-virt-int.resx">
+      <DependentUpon>201812081817004_added-virt-int.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

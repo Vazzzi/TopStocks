@@ -18,7 +18,9 @@ namespace TopStocks.Models
         public ActionResult Index()
         {
             var holdings = db.Holdings.Include(h => h.Stock);
-            return View(holdings.ToList());
+            return View(holdings.Where(hld =>
+                hld.Buyer == db.Users.FirstOrDefault<ApplicationUser>(user =>
+                    user.UserName == this.User.Identity.Name)));
         }
 
         // GET: Holdings/Details/5
@@ -48,31 +50,29 @@ namespace TopStocks.Models
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
-        public ActionResult Create(Stock stock, int quantity, int buyingPrice, int totalSum)
+        public ActionResult Create(Stock stock, int quantity, float buyingPrice, float totalSum)
         {
             Holding holding = new Holding();
-
+            Stock stockToBuy = db.Stocks.FirstOrDefault(s => s.ID == stock.ID);
             ApplicationUser currentUser = db.Users.Where(user => user.UserName == User.Identity.Name).FirstOrDefault();
             
             if (currentUser == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.Forbidden);
             }
-            var a = stock;
             holding.Buyer = currentUser;
             holding.BuyingDate = DateTime.Now;
             holding.BuyingPrice = buyingPrice;
             holding.Quantity = quantity;
-            holding.BuyingTotalSum = totalSum;
-            //holding.StockName = apartmentForSale;
+            holding.BuyingValue = totalSum;
+            holding.StockName = stock.Name;
+            holding.Stock = stockToBuy;
 
+            db.Holdings.Add(holding);
+            db.SaveChanges();
             return new HttpStatusCodeResult(HttpStatusCode.Created);
         }
         /*
-        public ActionResult CreateHolding(Stock stock, int quantity  , int buyingPrice)
-        {
-
-        }
         
         // GET: Holdings/Edit/5
         public ActionResult Edit(int? id)
@@ -95,7 +95,7 @@ namespace TopStocks.Models
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "ID,UserID,CurrentPrice,Quantity,BuyingPrice,BuyingTotalSum,BuyingDate,StockID")] Holding holding)
+        public ActionResult Edit([Bind(Include = "ID,UserID,CurrentPrice,Quantity,BuyingPrice,BuyingValue,BuyingDate,StockID")] Holding holding)
         {
             if (ModelState.IsValid)
             {
@@ -106,7 +106,7 @@ namespace TopStocks.Models
             ViewBag.StockID = new SelectList(db.Stocks, "ID", "Name", holding.StockID);
             return View(holding);
         }
-
+        */
         // GET: Holdings/Delete/5
         public ActionResult Delete(int? id)
         {
@@ -132,7 +132,7 @@ namespace TopStocks.Models
             db.SaveChanges();
             return RedirectToAction("Index");
         }
-        */
+        //*/
         protected override void Dispose(bool disposing)
         {
             if (disposing)

@@ -3,6 +3,7 @@
 @{
     ViewBag.Title = "Index";
     Layout = "~/Views/Shared/_Layout.cshtml";
+
 }
 
 <h2>Index</h2>
@@ -14,7 +15,7 @@
             @Html.DisplayNameFor(model => model.StockName)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.CurrentPrice)
+            @Html.DisplayNameFor(model => model.Stock.Price.CurrentPrice)
         </th>
         <th>
             @Html.DisplayNameFor(model => model.Quantity)
@@ -26,7 +27,7 @@
             @Html.DisplayNameFor(model => model.BuyingPrice)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.BuyingTotalSum)
+            @Html.DisplayNameFor(model => model.BuyingValue)
         </th>
         <th>
             @Html.DisplayNameFor(model => model.BuyingDate)
@@ -37,29 +38,42 @@
         <th></th>
     </tr>
 
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.StockName)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.CurrentPrice)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Quantity)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.BuyingPrice)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.BuyingTotalSum)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.BuyingDate)
-        </td>
-            @Html.ActionLink("Details", "Details", new { id=item.ID }) 
+    @foreach (var item in Model)
+    {
+        var holdingValue = item.Quantity * item.Stock.Price.CurrentPrice;
 
-    </tr>
-}
+        var profit = (((item.Stock.Price.CurrentPrice - item.BuyingPrice) / item.BuyingPrice) * 100) + "%";
+
+
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.StockName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Stock.Price.CurrentPrice)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Quantity)
+            </td>
+            <td>
+                @holdingValue
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.BuyingPrice)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.BuyingValue)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.BuyingDate)
+            </td>
+            <td>
+                @profit
+            </td>
+            <td>
+                @Html.ActionLink("Details", "Details", new { id = item.ID })
+            </td>
+        </tr>
+    }
 
 </table>

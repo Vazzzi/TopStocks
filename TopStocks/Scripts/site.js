@@ -1,4 +1,5 @@
 ﻿$(document).ready(function () {
+    getRefreshStocksData();
     $.ajax({
         dataType: "json",
         url: "/Stocks/AllStocksJSON",
@@ -39,12 +40,12 @@ function updateStocksList(data) {
                 + '                            Current Price'
                 + '                        </li>'
                 + '                        <li class="list-group-item">'
-                + '                            <span class="badge">' + stock.Price.WeekHighPrice + '</span>'
-                + '                            Highest Week Price'
+                + '                            <span class="badge">' + stock.Price.DayHighPrice + '</span>'
+                + '                            Highest Day Price'
                 + '                        </li>'
                 + '                        <li class="list-group-item">'
-                + '                            <span class="badge">' + stock.Price.WeekLowPrice + '</span>'
-                + '                            Lowest Week Price'
+                + '                            <span class="badge">' + stock.Price.DayLowPrice + '</span>'
+                + '                            Lowest Day Price'
                 + '                        </li>'
                 + '                        <li class="list-group-item">'
                 + '                            <span class="badge">' + stock.Symbol + '</span>'
@@ -117,8 +118,8 @@ function updateHoldingModalData(stockData) {
             data: {
                 stock: stockData,
                 quantity: parseInt(document.getElementById("quantity").value),
-                buyingPrice: parseInt(document.getElementById("holdingBuy").placeholder),
-                totalSum: parseInt(document.getElementById("charge").placeholder)
+                buyingPrice: parseFloat(document.getElementById("holdingBuy").placeholder),
+                totalSum: parseFloat(document.getElementById("charge").placeholder)
             }
         })
             .done(function () {
@@ -142,7 +143,7 @@ function updateHoldingModalData(stockData) {
             .always(function () {
                 setTimeout(function () {
                     $('#holdingError').prop('hidden', true);
-                    //clearTesxtData();
+                    clearData();
                 }, 4000);
             })
     });
@@ -150,11 +151,17 @@ function updateHoldingModalData(stockData) {
 }
 
 
+function getRefreshStocksData() {
+    $.ajax({
+        url: "/Stocks/RefreshStocksData"
+    });
+
+}
 
 function getAllStocksJSON() {
     $.ajax({
         dataType: "json",
-        url: "/Stocks/AllstocksJSON",
+        url: "/Stocks/AllStocksJSON",
 
         success: function (data) {
             updateStocksList(data);
@@ -163,11 +170,6 @@ function getAllStocksJSON() {
 }
 
 
-function showAllStocks() {
-
-
-    getAllStocksJSON();
-
+function clearData() {
+    document.getElementById("quantity").value = 1;
 }
-
-

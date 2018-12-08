@@ -127,3 +127,10 @@ C:\Users\Roi\source\repos\TopStocks\TopStocks\obj\Debug\TopStocks.Migrations.ini
 C:\Users\Roi\source\repos\TopStocks\TopStocks\obj\Debug\TopStocks.Migrations.inintal1.resources
 C:\Users\Roi\source\repos\TopStocks\TopStocks\obj\Debug\TopStocks.Migrations.initial7.resources
 C:\Users\Roi\source\repos\TopStocks\TopStocks\obj\Debug\TopStocks.Migrations.initial8.resources
+C:\Users\Roi\source\repos\TopStocks\TopStocks\obj\Debug\TopStocks.Migrations.initial9.resources
+C:\Users\Roi\source\repos\TopStocks\TopStocks\bin\System.Net.Http.Formatting.dll
+C:\Users\Roi\source\repos\TopStocks\TopStocks\bin\System.Net.Http.Formatting.xml
+C:\Users\Roi\source\repos\TopStocks\TopStocks\obj\Debug\TopStocks.Migrations.priceupdate.resources
+C:\Users\Roi\source\repos\TopStocks\TopStocks\obj\Debug\TopStocks.Migrations.updatedholding.resources
+C:\Users\Roi\source\repos\TopStocks\TopStocks\obj\Debug\TopStocks.Migrations.viewmdoel.resources
+C:\Users\Roi\source\repos\TopStocks\TopStocks\obj\Debug\TopStocks.Migrations.addedvirtint.resources

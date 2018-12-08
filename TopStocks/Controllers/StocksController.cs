@@ -6,6 +6,7 @@ using System.Diagnostics;
 using System.IO;
 using System.Linq;
 using System.Net;
+using System.Net.Http;
 using System.Web;
 using System.Web.Mvc;
 using TopStocks.Models;
@@ -175,5 +176,78 @@ namespace TopStocks.Controllers
             return Json(stocks, JsonRequestBehavior.AllowGet);
         }
 
+        public void RefreshStocksData()
+        {
+            
+            var stocks = db.Stocks.ToList();
+            foreach (var stock in stocks)
+            {
+                var IEXTrading_API_PATH = "https://api.iextrading.com/1.0/stock/{0}/quote";
+                IEXTrading_API_PATH = string.Format(IEXTrading_API_PATH, stock.Symbol);
+                using (HttpClient client = new HttpClient())
+                {
+                    client.DefaultRequestHeaders.Accept.Clear();
+                    client.DefaultRequestHeaders.Accept.Add(new System.Net.Http.Headers.MediaTypeWithQualityHeaderValue("application/json"));
+
+                    //For IP-API
+                    client.BaseAddress = new Uri(IEXTrading_API_PATH);
+                    HttpResponseMessage response = client.GetAsync(IEXTrading_API_PATH).GetAwaiter().GetResult();
+                    if (response.IsSuccessStatusCode)
+                    {
+                        var quoteInfo = response.Content.ReadAsAsync<QuoteDataResponse>().GetAwaiter().GetResult();
+                        if (quoteInfo != null)
+                        {
+                            stock.Price.CurrentPrice = quoteInfo.latestPrice;
+                            stock.Price.DayLowPrice = quoteInfo.low;
+                            stock.Price.DayHighPrice = quoteInfo.high;
+                            db.Entry(stock).State = EntityState.Modified;
+                            db.SaveChanges();
+                        }
+                    }
+                }
+            }
+
+        }
+
+        public class QuoteDataResponse
+        {
+            public string symbol { get; set; }
+            public string companyName { get; set; }
+            public string primaryExchange { get; set; }
+            public string sector { get; set; }
+            public string calculationPrice { get; set; }
+            public double open { get; set; }
+            public long openTime { get; set; }
+            public double close { get; set; }
+            public long closeTime { get; set; }
+            public float high { get; set; }
+            public float low { get; set; }
+            public float latestPrice { get; set; }
+            public string latestSource { get; set; }
+            public string latestTime { get; set; }
+            public long latestUpdate { get; set; }
+            public int latestVolume { get; set; }
+            public string iexRealtimePrice { get; set; }
+            public string iexRealtimeSize { get; set; }
+            public string iexLastUpdated { get; set; }
+            public double delayedPrice { get; set; }
+            public long delayedPriceTime { get; set; }
+            public double previousClose { get; set; }
+            public string change { get; set; }
+            public string changePercent { get; set; }
+            public string iexMarketPercent { get; set; }
+            public string iexVolume { get; set; }
+            public int avgTotalVolume { get; set; }
+            public string iexBidPrice { get; set; }
+            public string iexBidSize { get; set; }
+            public string iexAskPrice { get; set; }
+            public string iexAskSize { get; set; }
+            public long marketCap { get; set; }
+            public double peRatio { get; set; }
+            public double week52High { get; set; }
+            public double week52Low { get; set; }
+            public string ytdChange { get; set; }
+        }
     }
+
 }

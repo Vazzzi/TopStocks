@@ -3,7 +3,7 @@
     public class Price
     {
         public float CurrentPrice { get; set; }
-        public float WeekHighPrice { get; set; }
-        public float WeekLowPrice { get; set; }
+        public float DayHighPrice { get; set; }
+        public float DayLowPrice { get; set; }
     }
 }
