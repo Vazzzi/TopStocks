@@ -53,7 +53,7 @@ function updateStocksList(data) {
                 + '                        </li>'
                 + '                        <li class="list-group-item">'
                 + '                            <span class="badge">' + new Date(parseInt(stock.NextReportDate.substr(6))).toLocaleDateString() + '</span>'
-                + '                            Report Date'
+                + '                            Next Report Date'
                 + '                        </li>'
                 + '                    </ul>'
                 + '                </div>'
@@ -169,4 +169,5 @@ function getAllStocksJSON() {
 
 function clearData() {
     document.getElementById("quantity").value = 1;
+    document.getElementById("charge").value = 0;
 }
