@@ -132,10 +132,7 @@ function updateHoldingModalData(stockData) {
             })
             .fail(function (error) {
                 if (error.status == 403) {
-                    $('#holdingError').text("just login/register and continue the purchase right away!");
-                }
-                if (error.status == 409) {
-                    $('#holdingError').text("you own this house! purchase another one if you can...");
+                    $('#holdingError').text("login/register before buying Stocks!");
                 }
                 $('#holdingError').prop('hidden', false);
                 $('#holdingSuccess').prop('hidden', true);
