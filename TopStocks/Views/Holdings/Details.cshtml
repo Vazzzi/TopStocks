@@ -1,0 +1,66 @@
+﻿@model TopStocks.Models.Holding
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Holding</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.StockName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.StockName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Stock.Price.CurrentPrice)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Stock.Price.CurrentPrice)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Quantity)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Quantity)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.BuyingPrice)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.BuyingPrice)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.BuyingValue)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.BuyingValue)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.BuyingDate)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.BuyingDate)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Back to List", "Index")
+</p>

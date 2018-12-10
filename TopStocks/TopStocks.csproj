@@ -88,6 +88,9 @@
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.Drawing" />
+    <Reference Include="System.Net.Http.Formatting, Version=5.2.7.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.WebApi.Client.5.2.7\lib\net45\System.Net.Http.Formatting.dll</HintPath>
+    </Reference>
     <Reference Include="System.Web.DynamicData" />
     <Reference Include="System.Web.Entity" />
     <Reference Include="System.Web.ApplicationServices" />
@@ -204,8 +207,71 @@
     <Compile Include="Migrations\201811182012329_initial1.Designer.cs">
       <DependentUpon>201811182012329_initial1.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201811222250097_initial2.cs" />
+    <Compile Include="Migrations\201811222250097_initial2.Designer.cs">
+      <DependentUpon>201811222250097_initial2.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201811231715431_inital.cs" />
+    <Compile Include="Migrations\201811231715431_inital.Designer.cs">
+      <DependentUpon>201811231715431_inital.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201811241532505_initial3.cs" />
+    <Compile Include="Migrations\201811241532505_initial3.Designer.cs">
+      <DependentUpon>201811241532505_initial3.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201811241549276_initial4.cs" />
+    <Compile Include="Migrations\201811241549276_initial4.Designer.cs">
+      <DependentUpon>201811241549276_initial4.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201811241847059_initial5.cs" />
+    <Compile Include="Migrations\201811241847059_initial5.Designer.cs">
+      <DependentUpon>201811241847059_initial5.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201811291516276_inintal.cs" />
+    <Compile Include="Migrations\201811291516276_inintal.Designer.cs">
+      <DependentUpon>201811291516276_inintal.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201811301319275_initial6.cs" />
+    <Compile Include="Migrations\201811301319275_initial6.Designer.cs">
+      <DependentUpon>201811301319275_initial6.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201811301409015_inintal1.cs" />
+    <Compile Include="Migrations\201811301409015_inintal1.Designer.cs">
+      <DependentUpon>201811301409015_inintal1.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201812010936209_initial7.cs" />
+    <Compile Include="Migrations\201812010936209_initial7.Designer.cs">
+      <DependentUpon>201812010936209_initial7.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201812012216091_initial8.cs" />
+    <Compile Include="Migrations\201812012216091_initial8.Designer.cs">
+      <DependentUpon>201812012216091_initial8.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201812042237168_initial9.cs" />
+    <Compile Include="Migrations\201812042237168_initial9.Designer.cs">
+      <DependentUpon>201812042237168_initial9.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201812062222443_price-update.cs" />
+    <Compile Include="Migrations\201812062222443_price-update.Designer.cs">
+      <DependentUpon>201812062222443_price-update.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201812081619374_updated-holding.cs" />
+    <Compile Include="Migrations\201812081619374_updated-holding.Designer.cs">
+      <DependentUpon>201812081619374_updated-holding.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201812081632107_viewmdoel.cs" />
+    <Compile Include="Migrations\201812081632107_viewmdoel.Designer.cs">
+      <DependentUpon>201812081632107_viewmdoel.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201812081817004_added-virt-int.cs" />
+    <Compile Include="Migrations\201812081817004_added-virt-int.Designer.cs">
+      <DependentUpon>201812081817004_added-virt-int.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
+    <Compile Include="Models\Holding.cs" />
+    <Compile Include="Controllers\HoldingsController.cs" />
+    <Compile Include="Models\HoldingViewModel.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
     <Compile Include="Models\Price.cs" />
@@ -228,6 +294,7 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <None Include="Scripts\jquery-3.3.1.intellisense.js" />
+    <Content Include="Scripts\canvas.js" />
     <Content Include="Scripts\jquery-3.3.1.js" />
     <Content Include="Scripts\jquery-3.3.1.min.js" />
     <Content Include="Scripts\jquery-3.3.1.slim.js" />
@@ -238,6 +305,8 @@
     <Content Include="Scripts\jquery.validate.unobtrusive.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.min.js" />
     <Content Include="Scripts\modernizr-2.8.3.js" />
+    <Content Include="Scripts\site.js" />
+    <Content Include="Scripts\widgets.js" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
@@ -274,10 +343,15 @@
     <Content Include="Views\Stocks\Edit.cshtml" />
     <Content Include="Views\Stocks\Manage.cshtml" />
     <Content Include="Views\Stocks\Index.cshtml" />
+    <Content Include="Views\Stocks\_HoldingModal.cshtml" />
+    <Content Include="Views\Holdings\Create.cshtml" />
+    <Content Include="Views\Holdings\Delete.cshtml" />
+    <Content Include="Views\Holdings\Details.cshtml" />
+    <Content Include="Views\Holdings\Edit.cshtml" />
+    <Content Include="Views\Holdings\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Views\FileUtil\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff2" />
@@ -298,6 +372,51 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201811182012329_initial1.resx">
       <DependentUpon>201811182012329_initial1.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201811222250097_initial2.resx">
+      <DependentUpon>201811222250097_initial2.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201811231715431_inital.resx">
+      <DependentUpon>201811231715431_inital.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201811241532505_initial3.resx">
+      <DependentUpon>201811241532505_initial3.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201811241549276_initial4.resx">
+      <DependentUpon>201811241549276_initial4.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201811241847059_initial5.resx">
+      <DependentUpon>201811241847059_initial5.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201811291516276_inintal.resx">
+      <DependentUpon>201811291516276_inintal.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201811301319275_initial6.resx">
+      <DependentUpon>201811301319275_initial6.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201811301409015_inintal1.resx">
+      <DependentUpon>201811301409015_inintal1.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201812010936209_initial7.resx">
+      <DependentUpon>201812010936209_initial7.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201812012216091_initial8.resx">
+      <DependentUpon>201812012216091_initial8.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201812042237168_initial9.resx">
+      <DependentUpon>201812042237168_initial9.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201812062222443_price-update.resx">
+      <DependentUpon>201812062222443_price-update.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201812081619374_updated-holding.resx">
+      <DependentUpon>201812081619374_updated-holding.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201812081632107_viewmdoel.resx">
+      <DependentUpon>201812081632107_viewmdoel.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201812081817004_added-virt-int.resx">
+      <DependentUpon>201812081817004_added-virt-int.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

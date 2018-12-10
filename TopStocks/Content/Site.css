@@ -75,8 +75,8 @@ textarea {
 }
 
 .navbar-inverse {
-    background-color: #337ab7;
-    border-color: #2e6da4;
+    background-color: #3D9970;
+    border-color: #111111;
 }
 
     .navbar-inverse .navbar-nav > li > a, .navbar-inverse .navbar-brand {
@@ -110,7 +110,7 @@ textarea {
 }
 
     .page-header > h1 {
-        color: #337ab7;
+        color: #3D9970;
         font-size: 45px;
         font-weight: 700;
     }
@@ -118,6 +118,53 @@ textarea {
 .modal-thumbnail {
     margin-top: 20px;
 }
+
+
+.textOverImage {
+    width: 85%;
+    height: 200px;
+    border-radius: 4px;
+    margin: 4px;
+    position: relative;
+    cursor: pointer;
+    overflow: hidden;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: 100% 200px;
+}
+
+    .textOverImage > input {
+        display: none;
+    }
+
+    .textOverImage > div, .textOverImage > h2 {
+        position: absolute;
+        background-color: rgba(255,255,255,0.8);
+        bottom: 20px;
+        left: 4px;
+        right: 4px;
+        border-radius: 4px;
+        padding: 8px;
+        overflow: hidden;
+        opacity: 0;
+        transition: .3s;
+    }
+
+    .textOverImage:hover > h2, .textOverImage > input:checked + h2 + div {
+        bottom: 4px;
+        opacity: 1;
+    }
+
+    .textOverImage > input:checked + h2 {
+        bottom: -20px;
+        opacity: 0;
+    }
+
+    .textOverImage > h2 {
+        margin: 0;
+    }
+
+
 
 .modal-content {
     padding: 0 30px 0 30px;
@@ -129,20 +176,20 @@ textarea {
     background-position: center;
 }
 
-.apartment-view-image {
+.stock-view-image {
     height: 100px;
     width: 150px;
     display: inline;
 }
 
-.apartment-view-image-container {
+.stock-view-image-container {
     height: 100%;
     max-width: 200px;
     display: inline-grid;
     position: relative;
 }
 
-.apartment-view-image-container-delete {
+.stock-view-image-container-delete {
     position: absolute;
     top: 0;
     left: 0;
@@ -192,12 +239,12 @@ aside {
     text-align: center;
 }
 
-.apartment-main-view {
+.stock-main-view {
     width: 120%;
     margin-left: -10%;
 }
 
-#show-apartments {
+#show-stocks {
     margin-left: 8%;
 }
 
@@ -225,6 +272,28 @@ aside {
     padding-top: 8px;
 }
 
-.apartment-row-margin {
+.stock-row-margin {
     max-width: 100%;
 }
+
+.stock-view-image {
+    height: 100px;
+    width: 150px;
+    display: inline;
+}
+
+.stock-view-image-container {
+    height: 100%;
+    max-width: 200px;
+    display: inline-grid;
+    position: relative;
+}
+
+.stock-view-image-container-delete {
+    position: absolute;
+    top: 0;
+    left: 0;
+    color: white;
+    text-shadow: -0.5px 0 red, 0 0.5px red, 0.5px 0 red, 0 -0.5px red;
+}
+
