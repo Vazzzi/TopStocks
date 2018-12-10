@@ -248,6 +248,29 @@ namespace TopStocks.Controllers
             public double week52Low { get; set; }
             public string ytdChange { get; set; }
         }
+
+        public bool PredictStockProfitable(int currentPrice, int dayHigh, int dayLow)
+        {
+
+            var proc = new Process
+            {
+                StartInfo = new ProcessStartInfo
+                {
+                    FileName = System.AppDomain.CurrentDomain.BaseDirectory + @"..\debug\ML.exe",
+                    Arguments = currentPrice.ToString() + " " + dayHigh.ToString() + " " + dayLow.ToString(),
+                    UseShellExecute = false,
+                    RedirectStandardOutput = true,
+                    CreateNoWindow = false
+                }
+            };
+
+            proc.Start();
+            proc.WaitForExit();
+            string output = proc.StandardOutput.ReadToEnd();
+            bool returnBool = output.TrimEnd() == "True";
+
+            return returnBool;
+        }
     }
 
 }
