@@ -8,7 +8,43 @@
             updateStocksList(data);
         }
     });
+
+
+    $("#stock-filter-form").submit(function (f) {
+
+        var showall = $("#show-all-filter").is(":checked");
+
+        if (showall) {
+            var els = $("#stock-filter");
+            var len = els.length;
+
+            for (var i = 0; i <= len; i++) {
+                els[i].dsabled = true;
+            }
+
+            getAllStocksJSON();
+        }
+        else {
+            var minprice = $("#min-price-filter").val();
+
+            if (minprice == "") {
+                $("#min-price-filter").val(0);
+            }
+
+            var maxprice = $("#max-price-filter").val();
+
+            if (maxprice != null) {
+  
+                getPriceRangeJSON();
+                
+            }
+        }
+
+        f.preventDefault();
+    });
 });
+
+
 
 
 
@@ -170,4 +206,53 @@ function getAllStocksJSON() {
 function clearData() {
     document.getElementById("quantity").value = 1;
     document.getElementById("charge").value = 0;
+}
+
+
+
+function getPriceRangeJSON() {
+    $.ajax({
+        dataType: "json",
+        url: "/Stocks/PriceRangeJSON",
+        data: {
+            MinimumPrice: $("#min-price-filter").val(),
+            MaximumPrice: $("#max-price-filter").val()
+        },
+        success: function (data) {
+            updateStocksList(data);
+        }
+    });
+}
+
+function showAllStocksCheckbox(checkbox) {
+    if (checkbox.checked == true) {
+        document.getElementById("min-price-filter").disabled = true;
+        document.getElementById("max-price-filter").disabled = true;
+        document.getElementById("submit-stock-filter").disabled = true;
+        document.getElementById("reset-stock-filter").disabled = true;
+
+        getAllStocksJSON();
+
+    } else {
+        document.getElementById("min-price-filter").disabled = false;
+        document.getElementById("max-price-filter").disabled = false;
+
+
+        if (document.getElementById("max-price-filter").value !== "" ) {
+            document.getElementById("submit-apartment-filter").disabled = false;
+        } else {
+            document.getElementById("submit-stock-filter").disabled = true;
+        }
+
+        document.getElementById("reset-stock-filter").disabled = false;
+    }
+}
+
+function enableApply() {
+
+    if (document.getElementById("max-price-filter").value !== "" ) {
+        document.getElementById("submit-stock-filter").disabled = false;
+    } else {
+        document.getElementById("submit-stock-filter").disabled = true;
+    }
 }

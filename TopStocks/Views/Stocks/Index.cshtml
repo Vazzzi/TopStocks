@@ -22,14 +22,35 @@
 
 <div class="stock-main-view">
     <div class="row">
-        <div class="col-sm-2"></div>
+        <div class="col-sm-2">
+            <form id="stock-filter-form">
+                <div class="form-group">
+                    <br/>
+                    <label for="recipient-name" class="col-form-label" id="show-all-filter-label">Show All Stocks</label>
+                    <input type="checkbox" class="form-control" id="show-all-filter" checked="checked" onchange="showAllStocksCheckbox(this)">
+                    <br/>
+                </div>
+                <hr/>
+                <div class="form-group">
+                    <br/>
+                    <label for="recipient-name" class="col-form-label">Minimum Current Price</label>
+                    <input type="number" min="" placeholder="" class="form-control" id="min-price-filter" disabled="disabled">
+                    <br/>
+                    <label for="recipient-name" class="col-form-label">Maximum Current Price</label>
+                    <input type="number" min="" placeholder="" class="form-control" id="max-price-filter" disabled="disabled" onchange="enableApply()"/>
+                    <br/>
+                    <br/>
+                    <button type="submit" class="btn btn-primary" id="submit-stock-filter" disabled="disabled">APPLY</button>
+                    <button type="reset" class="btn btn-secondary" data-dismiss="modal" id="reset-stock-filter" disabled="disabled">RESET</button>
+                </div>
+            </form>
+        </div>
         <div class="col-sm-9" id="show-stocks">
             <div class="row" id="stock-grid">
             </div>
         </div>
     </div>
 </div>
-
 
 @Html.Partial("_HoldingModal")
 

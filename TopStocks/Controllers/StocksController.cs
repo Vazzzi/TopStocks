@@ -176,6 +176,12 @@ namespace TopStocks.Controllers
             return Json(stocks, JsonRequestBehavior.AllowGet);
         }
 
+        public JsonResult PriceRangeJSON(int MinimumPrice, int MaximumPrice)
+        {
+            var QuerySet = db.Stocks.Where(p => p.Price.CurrentPrice >= MinimumPrice &&   p.Price.CurrentPrice <= MaximumPrice).ToList();
+            return Json(QuerySet, JsonRequestBehavior.AllowGet);
+        }
+
         public void RefreshStocksData()
         {
             
