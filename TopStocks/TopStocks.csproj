@@ -267,6 +267,10 @@
     <Compile Include="Migrations\201812081817004_added-virt-int.Designer.cs">
       <DependentUpon>201812081817004_added-virt-int.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201904031344437_initial10.cs" />
+    <Compile Include="Migrations\201904031344437_initial10.Designer.cs">
+      <DependentUpon>201904031344437_initial10.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\Holding.cs" />
@@ -284,6 +288,7 @@
     <Content Include="Content\bootstrap-theme.min.css" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
+    <Content Include="Content\d3-styles.css" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
@@ -295,6 +300,8 @@
     </Content>
     <None Include="Scripts\jquery-3.3.1.intellisense.js" />
     <Content Include="Scripts\canvas.js" />
+    <Content Include="Scripts\D3.min.js" />
+    <Content Include="Scripts\D3JS-Scripts.js" />
     <Content Include="Scripts\jquery-3.3.1.js" />
     <Content Include="Scripts\jquery-3.3.1.min.js" />
     <Content Include="Scripts\jquery-3.3.1.slim.js" />
@@ -349,6 +356,9 @@
     <Content Include="Views\Holdings\Details.cshtml" />
     <Content Include="Views\Holdings\Edit.cshtml" />
     <Content Include="Views\Holdings\Index.cshtml" />
+    <Content Include="Views\Holdings\Statistics.cshtml" />
+    <Content Include="Views\Account\UsersMoneyInvested.cshtml" />
+    <Content Include="Views\Account\MoneyInvestedPerStock.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -417,6 +427,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201812081817004_added-virt-int.resx">
       <DependentUpon>201812081817004_added-virt-int.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201904031344437_initial10.resx">
+      <DependentUpon>201904031344437_initial10.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

@@ -147,6 +147,9 @@ namespace TopStocks.Controllers
             return View();
         }
 
+
+
+
         //
         // POST: /Account/Register
         [HttpPost]
@@ -355,6 +358,7 @@ namespace TopStocks.Controllers
             }
         }
 
+
         //
         // POST: /Account/ExternalLoginConfirmation
         [HttpPost]
@@ -431,8 +435,39 @@ namespace TopStocks.Controllers
             base.Dispose(disposing);
         }
 
-       
+        [Authorize(Roles = "Admin")]
+        public ActionResult UsersMoneyInvested()
+        {
+            Dictionary<ApplicationUser, float> users = db.Users.Join(db.Holdings,
+                        usr => usr.UserName,
+                        hld => hld.Buyer.UserName,
+                        (usr, hld) => new { AppUser = usr, HoldingPrice = hld.BuyingValue })
+                        .GroupBy(p => p.AppUser)
+                        .Select(r => new { User = r.Key, Sum = r.Sum(e => e.HoldingPrice) })
+                        .ToDictionary(s => s.User, s => s.Sum);
 
+            return View("UsersMoneyInvested", users);
+
+
+        }
+
+        [Authorize(Roles = "Admin")]
+        public ActionResult MoneyInvestedPerStock(string Stock)
+        {
+            Dictionary<string, float> stocks = db.Stocks.Join(db.Holdings,
+                stck => stck.ID,
+                hld => hld.StockID,
+                (stck, hld) => new
+                {
+                    stock = stck.Name,
+                    price = hld.BuyingValue
+                })
+                .GroupBy(p => p.stock)
+                .Select(r => new { Name = r.Key, Sum = r.Sum(e => e.price) })
+                .ToDictionary(s => s.Name, s => s.Sum);
+
+            return View("MoneyInvestedPerStock", stocks);
+        }
         #region Helpers
         // Used for XSRF protection when adding external logins
         private const string XsrfKey = "XsrfId";

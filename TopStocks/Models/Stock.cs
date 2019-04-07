@@ -15,6 +15,7 @@ namespace TopStocks.Models
         public Price Price { get; set; }
         public DateTime NextReportDate { get; set; }
         public string Photo { get; set; }
+        public string Category { get; set; } 
 
     }
 }

@@ -270,3 +270,4 @@ C:\Users\Roi\Desktop\TopStocks\TopStocks\obj\Debug\TopStocks.csproj.CoreCompileI
 C:\Users\Roi\Desktop\TopStocks\TopStocks\obj\Debug\TopStocks.csproj.CopyComplete
 C:\Users\Roi\Desktop\TopStocks\TopStocks\obj\Debug\TopStocks.dll
 C:\Users\Roi\Desktop\TopStocks\TopStocks\obj\Debug\TopStocks.pdb
+C:\Users\Roi\Desktop\TopStocks\TopStocks\obj\Debug\TopStocks.Migrations.initial10.resources

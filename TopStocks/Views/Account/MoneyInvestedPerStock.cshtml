@@ -1,0 +1,44 @@
+﻿@model Dictionary<string, float>
+
+@{
+    ViewBag.Title = "Money Invested Per Stock";
+}
+
+<h2 class="text-center">Users Money Invested:  </h2>
+<br />
+<table class="table">
+    <tr>
+        <th>#</th>
+        <th>
+            <span class="fa fa-home"></span>
+            User Name
+        </th>
+        <th>
+            <span class="fa fa-money-bill-alt"></span>
+            Invested money
+        </th>
+        <th></th>
+    </tr>
+    <!-- foreach statment that uses modal & index as well -->
+    @foreach (var item in Model.Select((model, index) => new { model, index }))
+    {
+        <tr>
+            <td>
+                @(item.index + 1)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.model.Key)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.model.Value)
+            </td>
+        </tr>
+    }
+</table>
+
+<br /><br />
+<div class="cool-wrapper">
+    <span class="cool-square">
+        <a class="cool-a-tag before after" href="~/Holdings/TopGainingTable">Back To List</a>
+    </span>
+</div>

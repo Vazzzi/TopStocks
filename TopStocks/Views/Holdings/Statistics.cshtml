@@ -1,0 +1,73 @@
+﻿@model Dictionary<TopStocks.Models.ApplicationUser, int>
+
+@{
+    ViewBag.Title = "Statistics";
+}
+
+
+<h2 class="text-center">TopStocks Top Gainers Hall Of Fame: </h2>
+<br />
+
+<div class="row">
+    <div class="col-md-4 cool-wrapper">
+        <span class="cool-square">
+            <a class="cool-a-tag before after" href="~/Holdings/">Holdings</a>
+        </span>
+    </div>
+    <div class="col-md-4 cool-wrapper">
+        <span class="cool-square">
+            <a class="cool-a-tag before after" href="~/Account/MoneyInvestedPerStock">Money Inveted Per Stock</a>
+        </span>
+    </div>
+    <div class="col-md-4 cool-wrapper">
+        <span class="cool-square">
+            <a class="cool-a-tag before after" href="~/Account/UsersMoneyInvested">User Money Invested</a>
+        </span>
+    </div>
+</div>
+<br />
+
+<table class="table">
+    <tr>
+        <th>#</th>
+        <th>
+            <span class="fa fa-user"></span>
+            Username
+        </th>
+        <th>
+            <span class="fa fa-chart-line"></span>
+            Score (Money Gained in $)
+        </th>
+        <th></th>
+    </tr>
+    <!-- foreach statment that uses modal & index as well -->
+    @foreach (var item in Model.Select((model, index) => new { model, index }))
+    {
+        <tr>
+            <td>
+                @(item.index + 1)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.model.Key.UserName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.model.Value)
+            </td>
+        </tr>
+    }
+</table>
+
+<link rel="stylesheet" href="~/Content/d3-styles.css" />
+<script src="~/Scripts/D3.min.js"></script>
+
+<h3>Available Stocks</h3>
+<div class="row">
+    <svg id="tiles" width="660" height="260"></svg>
+</div>
+
+<h3>Live: Division of stocks per category: </h3>
+<div class="row">
+    <div id="donut" class="col-sm-6"></div>
+</div>
+<script src="~/Scripts/jquery-3.3.1.min.js"></script>
+<script src="~/Scripts/D3JS-Scripts.js"></script>

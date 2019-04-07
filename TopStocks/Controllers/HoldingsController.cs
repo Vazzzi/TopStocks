@@ -72,6 +72,18 @@ namespace TopStocks.Models
             db.SaveChanges();
             return new HttpStatusCodeResult(HttpStatusCode.Created);
         }
+
+
+        // Get: Transactions/TopGainingTable
+        [Authorize(Roles = "Admin")]
+        public ActionResult TopGainingTable()
+        {
+            Dictionary<ApplicationUser, int> transactions = db.Holdings.GroupBy(h => h.Buyer)
+                                                            .Select(g => new { g.Key, Count = g.Count() })
+                                                            .OrderByDescending(s => s.Count)
+                                                            .ToDictionary(s => s.Key, s => s.Count);
+            return View("Statistics", transactions);
+        }
         /*
         
         // GET: Holdings/Edit/5

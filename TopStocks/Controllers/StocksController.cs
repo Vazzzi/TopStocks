@@ -176,6 +176,14 @@ namespace TopStocks.Controllers
             return Json(stocks, JsonRequestBehavior.AllowGet);
         }
 
+
+        public JsonResult StocksCountGroupJSON()
+        {
+            var stocks = db.Stocks.GroupBy(s => s.Category)
+                                          .Select(s => new { Category = s.Key, Count = s.Count() });
+
+            return Json(stocks, JsonRequestBehavior.AllowGet);
+        }
         public JsonResult PriceRangeJSON(int MinimumPrice, int MaximumPrice)
         {
             var QuerySet = db.Stocks.Where(p => p.Price.CurrentPrice >= MinimumPrice &&   p.Price.CurrentPrice <= MaximumPrice).ToList();
