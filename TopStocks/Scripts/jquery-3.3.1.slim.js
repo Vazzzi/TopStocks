@@ -3934,7 +3934,8 @@ var access = function( elems, fn, key, value, chainable, emptyGet, raw ) {
 
 		if ( bulk ) {
 
-			// Bulk operations run against the entire set
+            // Bulk operations run a
+            st the entire set
 			if ( raw ) {
 				fn.call( elems, value );
 				fn = null;

@@ -74,15 +74,15 @@ namespace TopStocks.Models
         }
 
 
-        // Get: Transactions/TopGainingTable
+        // Get: Holdings/HoldingTable
         [Authorize(Roles = "Admin")]
-        public ActionResult TopGainingTable()
+        public ActionResult HoldingTable()
         {
-            Dictionary<ApplicationUser, int> transactions = db.Holdings.GroupBy(h => h.Buyer)
+            Dictionary<ApplicationUser, int> holdings = db.Holdings.GroupBy(h => h.Buyer)
                                                             .Select(g => new { g.Key, Count = g.Count() })
                                                             .OrderByDescending(s => s.Count)
                                                             .ToDictionary(s => s.Key, s => s.Count);
-            return View("Statistics", transactions);
+            return View("Statistics", holdings);
         }
         /*
         
