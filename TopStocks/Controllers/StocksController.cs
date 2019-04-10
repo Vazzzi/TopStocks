@@ -38,7 +38,7 @@ namespace TopStocks.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Stock stock = db.Stocks.Find(id);
+            Stock stock = db.Stocks.FirstOrDefault(stck => (stck.ID == id));
             if (stock == null)
             {
                 return HttpNotFound();
