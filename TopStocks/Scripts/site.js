@@ -239,7 +239,7 @@ function showAllStocksCheckbox(checkbox) {
 
 
         if (document.getElementById("max-price-filter").value !== "" ) {
-            document.getElementById("submit-apartment-filter").disabled = false;
+            document.getElementById("submit-stock-filter").disabled = false;
         } else {
             document.getElementById("submit-stock-filter").disabled = true;
         }
